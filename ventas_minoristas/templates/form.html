@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            min-height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form{
+            font-family:sans-serif;
+            font-size: 30px;
+            border: 2px solid #000;
+            padding: 50px;
+            border-radius: 5%;
+        }
+
+        div{
+            display: flex;
+            flex-direction: column;
+        }
+
+        label{
+            display: flex;
+            flex-direction: column;
+            margin-top: 25px;
+        }
+
+        input{
+            margin-top:15px;
+            padding: 10px;
+            outline: none;
+            border: 1px solid #000;
+            border-radius: 10px;
+            font-size: 20px;
+        }
+
+        button{
+            background-color: #44adf7;
+            border-radius: 10px;
+            border: 1px solid #0b94f5;
+            font-size: 20px;
+            padding: 15px;
+            color: #fff;
+            outline: none;
+            margin-top: 20px;
+        }
+
+        button:hover{
+            cursor: pointer;
+        }
+
+        a{
+            color: #000;
+            font-size: 25px;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+        <form action=""> 
+            <div>
+                <h3>Formulario de producto</h3>
+                <label>
+                    Nombre del Producto
+                    <input type="text" class="input">
+                </label>
+        
+                <label>
+                    Descripción
+                    <input type="text" class="input">
+                </label>
+        
+                <label>
+                    Precio
+                    <input type="number" class="input">
+                </label>
+                <button id="boton">Enviar data</button>
+                <a href="{% url 'producto'%}">Información</a>
+            </div>
+        </form>
+
+    <script>
+        const btn = document.getElementById("boton");
+        const inputs = document.querySelectorAll(".input");
+        let enviar;
+        const botonFunsion = e =>{
+            e.preventDefault();
+            inputs.forEach(input =>{
+                if(input.value!== "") enviar = true;
+                else {
+                    alert("Formulario con un dato vacío");
+                    enviar = false;
+                };
+            });
+            if (enviar){
+                alert("Formulario enviado");
+                inputs.forEach(input=>input.value = "")
+            };
+        };
+        btn.addEventListener("click", e=>botonFunsion(e));
+    </script>
+</body>
+</html>
